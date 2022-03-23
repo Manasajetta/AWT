@@ -1,4 +1,4 @@
-let sname="MANASA"
+let sname="MANASA";
 let sdata={
     getName:function()
     {
@@ -6,7 +6,7 @@ let sdata={
     },
     setName :function(snewName)
     {
-        sname=snewName
+        sname=snewName;
     }
 }
 export default sdata;
