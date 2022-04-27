@@ -1,0 +1,78 @@
+<html>
+    <body align="center">
+        
+            <h1>Student Registration details</h1>
+            Name:<input type="text" id="uname"></br>
+            Rollno:<input type="text" id="rollno"></br>
+            Password:<input type="password" id="pwd"></br>
+            <button id="submit">Insert</button>
+            <button id="select">select</button>
+            <button id="update">update</button>
+            <button id="clear">clear</button>
+            <button id="delete">delete</button>
+    
+            <script type="module">
+                // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+                // TODO: Add SDKs for Firebase products that you want to use
+                // https://firebase.google.com/docs/web/setup#available-libraries
+              
+                // Your web app's Firebase configuration
+                const firebaseConfig = {
+                  apiKey: "AIzaSyBzfGZ1Vmm4MtBXOVuqjHVkvj_vtNku8Jk",
+                  authDomain: "register-c5d28.firebaseapp.com",
+                  projectId: "register-c5d28",
+                  storageBucket: "register-c5d28.appspot.com",
+                  messagingSenderId: "665719123011",
+                  appId: "1:665719123011:web:f678d5821f30ebcc4a38f6"
+                };
+              
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+              
+  import{
+    getDatabase,
+    ref,
+    get,
+    set,
+    child,
+    update,
+    remove
+}from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"
+  // Initialize Firebase
+  const db=getDatabase();
+  var unameBox=document.getElementById("uname");
+  var rollBox=document.getElementById("rollno");
+  var pwdBox=document.getElementById("pwd");
+  var subButton=document.getElementById("submit");
+  var clearButton=document.getElementById("clear");
+
+
+  function submitdata(){
+      set(ref(db,"Student/"+rollBox.value),{
+          Name:unameBox.value,
+          Rollno:rollBox.value,
+          Password:pwdBox.value
+      }).then(()=>alert("Student details inserted successfully"))
+      .catch((err)=>alert("data not inserted"+err))
+  }
+
+
+  function cleardata(){
+      unameBox.value="";
+      rollBox.value="";
+      pwdBox.value="";
+  }
+
+function selectdata(){
+    const dbref=ref(db);
+    get(child((dbref,"Student/"+rollBox.value)))
+    .then(snapshot)=>{
+        if(snapshot.exits() )
+    }
+}
+  subButton.addEventListener("click",submitdata);
+  clearButton.addEventListener("click",cleardata);
+       </script>
+    </body>
+</html>
